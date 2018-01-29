@@ -324,6 +324,15 @@ export class RkTabView extends RkComponent {
     })
   }
 
+    
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.index !== undefined) {
+            this.setState({
+                index: nextProps.index
+            });
+        }
+    }
+
   render() {
     let scrollableHeader = !!this.props.maxVisibleTabs;
     let tabs = this._getTabs(this.props.children);
@@ -335,7 +344,9 @@ export class RkTabView extends RkComponent {
           {this._renderTabs(tabs, scrollableHeader)}
         </View>
         <View>
-          {tabs[this.state.index]}
+            <ScrollView>
+                {tabs[this.state.index]}
+            </ScrollView>
         </View>
       </View>
     );
